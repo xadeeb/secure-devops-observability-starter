@@ -31,5 +31,7 @@ def test_ready(client):
 
 
 def test_echo(client):
-    response = client.post("/echo", json={"message": "hello"})
+    response = client.get("/echo?message=hello")
     assert response.status_code == 200
+    assert response.get_json() == {"message": "hello"}
+
